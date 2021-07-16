@@ -14,7 +14,7 @@ public class Player : MonoBehaviour {
 
 
     void Start() {
-        Debug.Log("This is a test.");
+        
     }
 
     
