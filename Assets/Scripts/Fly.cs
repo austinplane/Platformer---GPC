@@ -1,11 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Fly : MonoBehaviour {
     
-    Vector3 _stortPosition;
-    Vector2 _direction = Vector2.up;
+    Vector2 _startPosition;
+    [SerializeField] Vector2 _direction = Vector2.up;
+    [SerializeField] float _speed = 1;
+    [SerializeField] float _maxDistance = 2;
 
     void Awake() {
 	
@@ -14,16 +14,18 @@ public class Fly : MonoBehaviour {
 
     void Start() {
 
-        _stortPosition = transform.position;
+        _startPosition = transform.position;
     }
 
     
     void Update() {
 
-        transform.Translate(_direction * Time.deltaTime);
-        var distance = Vector2.Distance(_stortPosition, transform.position);
+        transform.Translate(_direction.normalized * Time.deltaTime * _speed);
+        var distance = Vector2.Distance(_startPosition, transform.position);
         
-        if (distance >= 2) {
+        if (distance >= _maxDistance) {
+
+            transform.position = _startPosition + (_direction.normalized * _maxDistance);
             _direction *= -1;
         }
     }
