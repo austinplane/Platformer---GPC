@@ -4,8 +4,12 @@ public class Player : MonoBehaviour {
 
     [SerializeField] float _speed = 1;
     [SerializeField] float _jumpForce = 200;
+    Vector2 _startPosition;
 
-    
+    private void Start() {
+
+        _startPosition = transform.position;
+    }
     void Update() {
 
         var horizontal = Input.GetAxis("Horizontal") * _speed;
@@ -28,5 +32,10 @@ public class Player : MonoBehaviour {
         if (Input.GetButtonDown("Fire1")) {
             rigidbody2D.AddForce(Vector2.up * _jumpForce);
         }
+    }
+
+    internal void ResetToStart() {
+
+        transform.position = _startPosition;
     }
 }
