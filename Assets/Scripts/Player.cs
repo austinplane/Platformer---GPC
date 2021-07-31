@@ -54,7 +54,7 @@ public class Player : MonoBehaviour {
             _jumpTimer += Time.deltaTime;
         }
 
-        if (isGrounded) {
+        if (isGrounded && _fallTimer > 0) {
 
             _fallTimer = 0;
             _jumpsRemaining = _maxJumps;
