@@ -51,8 +51,10 @@ public class Player : MonoBehaviour {
         else if (Input.GetButton("Fire1") && _jumpTimer <= maxJumpDuration) {
             rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, _jumpVelocity);
             _fallTimer = 0;
-            _jumpTimer += Time.deltaTime;
+            
         }
+
+        _jumpTimer += Time.deltaTime;
 
         if (isGrounded && _fallTimer > 0) {
 
