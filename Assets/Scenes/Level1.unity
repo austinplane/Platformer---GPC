@@ -393,7 +393,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4250823140985380727, guid: e9522d23b5f17fe4199c2c5056ac2971, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9522d23b5f17fe4199c2c5056ac2971, type: 3}
@@ -895,7 +895,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 9.156081
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1305,8 +1305,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b5f7d8702427914dad3cb808d608c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonDownSprite: {fileID: 21300000, guid: 28636da1f2988f042a36bc54bb92f9cc, type: 3}
-  _onEnter:
+  _pressedSprite: {fileID: 21300000, guid: 28636da1f2988f042a36bc54bb92f9cc, type: 3}
+  _onPressed:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 44793825}
@@ -1320,6 +1320,21 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+  _onReleased:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 44793825}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!61 &663730114
 BoxCollider2D:
