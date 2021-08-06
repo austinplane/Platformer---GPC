@@ -2,12 +2,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+    [Header("Movement")]
     [SerializeField] float _speed = 1;
+    [SerializeField] float _slipFactor = 1;
+    [Header("Jump")]
     [SerializeField] float _jumpVelocity = 10;
     [SerializeField] int _maxJumps = 2;
-    [SerializeField] Transform _feet;
     [SerializeField] float _downPull = 5;
     [SerializeField] float maxJumpDuration = 0.3f;
+    [Header("Collision")]
+    [SerializeField] Transform _feet;
 
     float _fallTimer;
     Vector2 _startPosition;
@@ -18,6 +22,7 @@ public class Player : MonoBehaviour {
     SpriteRenderer _spriteRenderer;
     float _horizontal;
     bool _isGrounded;
+    bool isOnIce;
 
     private void Start() {
 
@@ -33,7 +38,11 @@ public class Player : MonoBehaviour {
         UpdateIsGrounded();
 
         ReadHorizontalInput();
-        MoveHorizontal();
+
+        if (UpdateIsOnIce())
+            SlipHorizontal();
+        else
+            MoveHorizontal();
 
         UpdateAnimator();
         UpdateSpriteDirection();
@@ -93,9 +102,15 @@ public class Player : MonoBehaviour {
     }
 
     void MoveHorizontal() {
-        if (Mathf.Abs(_horizontal) >= 1) {
-            _rigidbody2D.velocity = new Vector2(_horizontal, _rigidbody2D.velocity.y);
-        }
+     
+        _rigidbody2D.velocity = new Vector2(_horizontal * _speed, _rigidbody2D.velocity.y);
+    }
+
+    void SlipHorizontal() {
+
+        var _desiredVelocity = new Vector2(_horizontal * _speed, _rigidbody2D.velocity.y);
+        var _smoothedVelocity = Vector2.Lerp(_rigidbody2D.velocity, _desiredVelocity, Time.deltaTime / _slipFactor);
+        _rigidbody2D.velocity = _smoothedVelocity;
     }
 
     void ReadHorizontalInput() {
@@ -116,7 +131,14 @@ public class Player : MonoBehaviour {
     void UpdateIsGrounded() {
         var hit = Physics2D.OverlapCircle(_feet.position, 0.1f, LayerMask.GetMask("Default"));
         _isGrounded = hit != null;
-        
+    }
+    bool UpdateIsOnIce() {
+
+        var hit = Physics2D.OverlapCircle(_feet.position, 0.1f, LayerMask.GetMask("Default"));
+        if (hit != null)
+            return hit.tag == "Slippery";
+        else
+            return false;
     }
 
     internal void ResetToStart() {

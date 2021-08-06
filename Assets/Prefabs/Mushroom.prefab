@@ -126,7 +126,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 127.8
+  m_SurfaceArc: 92.25
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
@@ -142,3 +142,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45ed764fb1862164691ed328308e8350, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bounceVelocity: 8
