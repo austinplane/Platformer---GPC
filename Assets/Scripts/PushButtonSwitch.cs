@@ -14,8 +14,6 @@ public class PushButtonSwitch : MonoBehaviour {
 
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _releasedSprite = _spriteRenderer.sprite;
-
-        BecomeReleased();
     }
     void OnTriggerEnter2D(Collider2D collision) {
 

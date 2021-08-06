@@ -21,6 +21,7 @@ public class Player : MonoBehaviour {
     Animator _animator;
     SpriteRenderer _spriteRenderer;
     float _horizontal;
+    Collider2D hit;
     bool _isGrounded;
     bool isOnIce;
 
@@ -35,14 +36,15 @@ public class Player : MonoBehaviour {
     }
     void Update() {
 
+        GetColliderAtFeet();
         UpdateIsGrounded();
-
-        ReadHorizontalInput();
 
         if (UpdateIsOnIce())
             SlipHorizontal();
         else
             MoveHorizontal();
+
+        ReadHorizontalInput();
 
         UpdateAnimator();
         UpdateSpriteDirection();
@@ -129,17 +131,22 @@ public class Player : MonoBehaviour {
     }
 
     void UpdateIsGrounded() {
-        var hit = Physics2D.OverlapCircle(_feet.position, 0.1f, LayerMask.GetMask("Default"));
+        
         _isGrounded = hit != null;
     }
     bool UpdateIsOnIce() {
 
-        var hit = Physics2D.OverlapCircle(_feet.position, 0.1f, LayerMask.GetMask("Default"));
         if (hit != null)
-            return hit.tag == "Slippery";
+            return hit.CompareTag("Slippery");
         else
             return false;
     }
+
+    private void GetColliderAtFeet() {
+        hit = Physics2D.OverlapCircle(_feet.position, 0.1f, LayerMask.GetMask("Default"));
+    }
+
+
 
     internal void ResetToStart() {
 
