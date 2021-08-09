@@ -27,10 +27,25 @@ public class Slime : MonoBehaviour {
     void Update() {
 
         _rigidbody.velocity = new Vector2(_direction, _rigidbody.velocity.y);
-        Debug.DrawRay(_rightSensor.position, Vector2.down * 0.1f, Color.red);
+
+        if (_direction < 0)
+            ScanSensor(_leftSensor);
+        else if (_direction > 0)
+            ScanSensor(_rightSensor);
+    }
+
+    private void ScanSensor(Transform _sensor) {
         
-        var result = Physics2D.Raycast(_rightSensor.position, Vector2.down, 0.1f);
+        Debug.DrawRay(_sensor.position, Vector2.down * 0.1f, Color.red);
+
+        var result = Physics2D.Raycast(_sensor.position, Vector2.down, 0.1f);
         if (result.collider == null)
+            TurnAround();
+
+        Debug.DrawRay(_sensor.position, new Vector2(_direction, 0) * 0.1f, Color.red);
+
+        var _sideResult = Physics2D.Raycast(_sensor.position, new Vector2(_direction, 0), 0.1f);        
+        if (_sideResult.collider != null)
             TurnAround();
     }
 
