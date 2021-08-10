@@ -267,7 +267,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 91504237}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.419, y: -0.14, z: 0}
+  m_LocalPosition: {x: 0.419, y: 0.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 214353016}
@@ -785,6 +785,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rightSensor: {fileID: 91504238}
   _leftSensor: {fileID: 2087611606}
+  _deadSprite: {fileID: 21300000, guid: 0e13927688e6d8248a8604fb4ad92301, type: 3}
 --- !u!70 &214353012
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -798,7 +799,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.2}
   m_Size: {x: 0.77, y: 0.4}
   m_Direction: 1
 --- !u!50 &214353013
@@ -900,7 +901,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 214353010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.43, y: -5.7948217, z: 0}
+  m_LocalPosition: {x: -7.43, y: -5.978, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 91504238}
@@ -2800,7 +2801,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2087611605}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.42, y: -0.14, z: 0}
+  m_LocalPosition: {x: -0.42, y: 0.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 214353016}
