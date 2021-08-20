@@ -90,7 +90,7 @@ public class Player : MonoBehaviour {
     }
 
     bool ShouldContinueJump() {
-        return Input.GetButton($"P{_playerNumber}Jump") && _jumpTimer <= maxJumpDuration;
+        return Input.GetButtonDown($"P{_playerNumber}Jump") && _jumpTimer <= maxJumpDuration;
     }
 
     void Jump() {
@@ -101,7 +101,7 @@ public class Player : MonoBehaviour {
     }
 
     bool ShouldStartJump() {
-        return Input.GetButton($"P{_playerNumber}Jump") && _jumpsRemaining > 0;
+        return Input.GetButtonDown($"P{_playerNumber}Jump") && _jumpsRemaining > 0;
     }
 
     void MoveHorizontal() {
