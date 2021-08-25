@@ -26,6 +26,8 @@ public class Player : MonoBehaviour {
     bool _isGrounded;
     bool isOnIce;
 
+    public int PlayerNumber => _playerNumber;
+
     private void Start() {
 
         _startPosition = transform.position;
@@ -60,7 +62,7 @@ public class Player : MonoBehaviour {
 
         IncrementJumpTimer();
 
-        if (_isGrounded && _fallTimer > 0) {
+        if (_isGrounded && _fallTimer > 0.5f) {
             ResetJump();
         }
 
@@ -144,7 +146,7 @@ public class Player : MonoBehaviour {
     }
 
     private void GetColliderAtFeet() {
-        hit = Physics2D.OverlapCircle(_feet.position, 0.1f, LayerMask.GetMask("Default"));
+        hit = Physics2D.OverlapCircle(_feet.position, 0.01f, LayerMask.GetMask("Default"));
     }
 
 

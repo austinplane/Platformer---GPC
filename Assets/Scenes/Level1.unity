@@ -1091,6 +1091,9 @@ MonoBehaviour:
   - target: {fileID: 942639127}
     weight: 1
     radius: 2
+  - target: {fileID: 1699508134}
+    weight: 1
+    radius: 2
 --- !u!4 &260235882
 Transform:
   m_ObjectHideFlags: 0
@@ -1247,7 +1250,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8
+  orthographic size: 9.156081
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
