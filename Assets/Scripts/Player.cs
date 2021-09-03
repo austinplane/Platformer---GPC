@@ -37,6 +37,8 @@ public class Player : MonoBehaviour {
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
+
+
     void Update() {
 
         GetColliderAtFeet();
@@ -150,10 +152,14 @@ public class Player : MonoBehaviour {
         hit = Physics2D.OverlapCircle(_feet.position, 0.01f, LayerMask.GetMask("Default"));
     }
 
-
-
     internal void ResetToStart() {
 
-        transform.position = _startPosition;
+        _rigidbody2D.position = _startPosition;
+    }
+
+    internal void TeleportTo(Vector3 position) {
+        
+        _rigidbody2D.position = position;
+        _rigidbody2D.velocity = Vector2.zero;
     }
 }
