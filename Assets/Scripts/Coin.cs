@@ -15,7 +15,6 @@ public class Coin : MonoBehaviour {
 
         gameObject.SetActive(false);
         CoinsCollected++;
-        Debug.Log(CoinsCollected);
     }
 
 }
