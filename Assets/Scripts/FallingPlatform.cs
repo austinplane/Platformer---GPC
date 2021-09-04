@@ -10,9 +10,20 @@ public class FallingPlatform : MonoBehaviour {
     HashSet<Player> _playersInTrigger = new HashSet<Player>();
     Vector3 _initialPosition;
     bool _falling;
+    float _wiggleTimer;
+    Coroutine coroutine;
 
     [SerializeField] float _fallSpeed = 3;
-    
+
+    [Tooltip("Reset the wiggle timer when no players are on the platform")]
+    [SerializeField] bool _resetOnEmpty;
+
+    [Range(0.1f, 5f)]
+    [SerializeField] float _fallAfterSeconds = 1;
+    [Range(0.005f, 0.1f)] 
+    [SerializeField] float _shakeX = 0.05f;
+    [Range(0.005f, 0.1f)] 
+    [SerializeField] float _shakeY = 0.05f;
 
     void Start() {
 
@@ -30,7 +41,7 @@ public class FallingPlatform : MonoBehaviour {
         PlayerInside = true;
 
         if (_playersInTrigger.Count == 1)
-            StartCoroutine(WiggleAndFall());
+            coroutine = StartCoroutine(WiggleAndFall());
     }
 
     void OnTriggerExit2D(Collider2D collider) {
@@ -46,7 +57,10 @@ public class FallingPlatform : MonoBehaviour {
 
         if (_playersInTrigger.Count == 0) {
             PlayerInside = false;
-            StopCoroutine(WiggleAndFall());
+            StopCoroutine(coroutine);
+
+            if (_resetOnEmpty)
+                _wiggleTimer = 0f;
         }
     }
 
@@ -56,16 +70,14 @@ public class FallingPlatform : MonoBehaviour {
         yield return new WaitForSeconds(0.25f);
         Debug.Log("Wiggling");
         
-        float wiggleTimer = 0f;
+        while (_wiggleTimer < _fallAfterSeconds) {
 
-        while (wiggleTimer < 1f) {
-
-            float randomX = UnityEngine.Random.Range(-0.05f, 0.05f);
-            float randomY = UnityEngine.Random.Range(-0.05f, 0.05f);
+            float randomX = UnityEngine.Random.Range(-_shakeX, _shakeX);
+            float randomY = UnityEngine.Random.Range(-_shakeY, _shakeY);
             transform.position = _initialPosition + new Vector3(randomX, randomY);
             float randomDelay = UnityEngine.Random.Range(0.005f, 0.01f);
             yield return new WaitForSeconds(randomDelay);
-            wiggleTimer += randomDelay;
+            _wiggleTimer += randomDelay;
         }
 
         Debug.Log("Falling");
