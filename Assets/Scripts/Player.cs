@@ -25,8 +25,11 @@ public class Player : MonoBehaviour {
     Collider2D hit;
     bool _isGrounded;
     bool isOnIce;
+    
 
     public int PlayerNumber => _playerNumber;
+    private string _jumpButton;
+    private string _horizontalAxis;
 
     private void Start() {
 
@@ -36,7 +39,10 @@ public class Player : MonoBehaviour {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-    }
+
+        _jumpButton = $"P{_playerNumber}Jump";
+        _horizontalAxis = $"P{_playerNumber}Horizontal";
+}
 
 
     void Update() {
@@ -94,7 +100,7 @@ public class Player : MonoBehaviour {
     }
 
     bool ShouldContinueJump() {
-        return Input.GetButton($"P{_playerNumber}Jump") && _jumpTimer <= maxJumpDuration;
+        return Input.GetButton(_jumpButton) && _jumpTimer <= maxJumpDuration;
     }
 
     void Jump() {
@@ -105,7 +111,7 @@ public class Player : MonoBehaviour {
     }
 
     bool ShouldStartJump() {
-        return Input.GetButtonDown($"P{_playerNumber}Jump") && _jumpsRemaining > 0;
+        return Input.GetButtonDown(_jumpButton) && _jumpsRemaining > 0;
     }
 
     void MoveHorizontal() {
@@ -121,7 +127,7 @@ public class Player : MonoBehaviour {
     }
 
     void ReadHorizontalInput() {
-        _horizontal = Input.GetAxis($"P{_playerNumber}Horizontal") * _speed;
+        _horizontal = Input.GetAxis(_horizontalAxis) * _speed;
     }
 
     void UpdateSpriteDirection() {

@@ -19,5 +19,12 @@ public class Collector : MonoBehaviour {
     
     void Update() {
         
+        foreach (var collectible in _collectiblesToCollect) {
+
+            if (collectible.isActiveAndEnabled)
+                return;
+        }
+
+        Debug.Log("Got all Gems.");
     }
 }
