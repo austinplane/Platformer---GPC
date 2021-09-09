@@ -24640,7 +24640,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 001202a13f747c24c8bdd89e27b02778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collectibles: []
+  _collectiblesToCollect:
+  - {fileID: 1229764641}
 --- !u!212 &1482907966
 SpriteRenderer:
   m_ObjectHideFlags: 0
