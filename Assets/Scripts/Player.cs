@@ -30,6 +30,7 @@ public class Player : MonoBehaviour {
     public int PlayerNumber => _playerNumber;
     private string _jumpButton;
     private string _horizontalAxis;
+    int _defaultLayerMask;
 
     private void Start() {
 
@@ -42,6 +43,7 @@ public class Player : MonoBehaviour {
 
         _jumpButton = $"P{_playerNumber}Jump";
         _horizontalAxis = $"P{_playerNumber}Horizontal";
+        _defaultLayerMask = LayerMask.GetMask("Default");
 }
 
 
@@ -155,7 +157,7 @@ public class Player : MonoBehaviour {
     }
 
     private void GetColliderAtFeet() {
-        hit = Physics2D.OverlapCircle(_feet.position, 0.01f, LayerMask.GetMask("Default"));
+        hit = Physics2D.OverlapCircle(_feet.position, 0.01f, _defaultLayerMask);
     }
 
     internal void ResetToStart() {
