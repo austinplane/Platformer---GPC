@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
 public class Collector : MonoBehaviour {
 
-    [SerializeField] Collectible[] _collectiblesToCollect;
+    [SerializeField] List<Collectible> _collectiblesToCollect;
     
     TMP_Text _remainingText;
 
@@ -15,9 +16,9 @@ public class Collector : MonoBehaviour {
 
 
     void Start() {
+        
         _remainingText = GetComponentInChildren<TMP_Text>();
     }
-
     
     void Update() {
 
@@ -34,5 +35,10 @@ public class Collector : MonoBehaviour {
             return;
 
         Debug.Log("Got all Gems.");
+    }
+
+    private void OnValidate() {
+
+        _collectiblesToCollect = _collectiblesToCollect.Distinct().ToList();
     }
 }
