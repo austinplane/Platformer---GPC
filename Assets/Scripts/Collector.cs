@@ -34,7 +34,7 @@ public class Collector : MonoBehaviour {
 
         foreach (var collectible in _collectiblesToCollect) {
 
-            collectible.AddCollector(this);
+            collectible.OnPickedUp += ItemPickedUp;
         }
 
         _remainingText?.SetText(_collectiblesToCollect.Count.ToString());
@@ -42,7 +42,7 @@ public class Collector : MonoBehaviour {
         _rendererMid = GetComponent<SpriteRenderer>();
         _rendererTop = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
     }
-    
+
     public void ItemPickedUp() {
 
         _countCollected++;
