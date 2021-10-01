@@ -34,7 +34,7 @@ public class Collector : MonoBehaviour {
 
         foreach (var collectible in _collectiblesToCollect) {
 
-            collectible.SetCollector(this);
+            collectible.AddCollector(this);
         }
 
         _remainingText?.SetText(_collectiblesToCollect.Count.ToString());
