@@ -70,5 +70,22 @@ public class Collector : MonoBehaviour {
             _canvas.enabled = false;
     }
 
+    void OnDrawGizmosSelected() {
 
+        Gizmos.color = Color.yellow;
+        
+        foreach (var collectible in _collectiblesToCollect) {
+
+            Gizmos.DrawLine(transform.position, collectible.transform.position);
+        }
+    }
+    void OnDrawGizmos() {
+
+        Gizmos.color = Color.gray;
+
+        foreach (var collectible in _collectiblesToCollect) {
+
+            Gizmos.DrawLine(transform.position, collectible.transform.position);
+        }
+    }
 }
