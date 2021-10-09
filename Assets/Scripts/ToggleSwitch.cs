@@ -24,13 +24,13 @@ public class ToggleSwitch : MonoBehaviour {
         var player = collider.GetComponent<Player>();
         if (player == null)
             return;
-
         
         if (player.GetComponent<Rigidbody2D>().velocity.x > 0) {
 
             _spriteRenderer.sprite = _rightToggleSwitch;
             _onRightToggleSwitch?.Invoke();
         }
+
         else {
 
             _spriteRenderer.sprite = _leftToggleSwitch;
