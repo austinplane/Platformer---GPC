@@ -13,8 +13,10 @@ public class ToggleSwitch : MonoBehaviour {
     [SerializeField] Sprite _rightToggleSwitch;
     [SerializeField] Sprite _centerToggleSwitch;
 
+    [SerializeField] ToggleDirection _startingDirection;
+
     SpriteRenderer _spriteRenderer;
-    ToggleDirection _currentDirection = ToggleDirection.Center;    
+    ToggleDirection _currentDirection;    
 
     enum ToggleDirection {
 
@@ -26,6 +28,7 @@ public class ToggleSwitch : MonoBehaviour {
     void Start() {
 
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        SetToggleDirection(_startingDirection);
     }
 
     void OnTriggerExit2D(Collider2D collider) {
@@ -61,6 +64,29 @@ public class ToggleSwitch : MonoBehaviour {
             case ToggleDirection.Right:
                 _spriteRenderer.sprite = _rightToggleSwitch;
                 _onRightToggleSwitch?.Invoke();
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    void OnValidate() {
+        
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+
+        switch (_startingDirection) {
+
+            case ToggleDirection.Left:
+                _spriteRenderer.sprite = _leftToggleSwitch;
+                break;
+
+            case ToggleDirection.Center:
+                _spriteRenderer.sprite = _centerToggleSwitch;
+                break;
+
+            case ToggleDirection.Right:
+                _spriteRenderer.sprite = _rightToggleSwitch;
                 break;
 
             default:
