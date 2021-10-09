@@ -40,6 +40,10 @@ public class PushButtonSwitch : MonoBehaviour {
         _onPressed?.Invoke();
     }
     private void BecomeReleased() {
+
+        if (_onReleased.GetPersistentEventCount() == 0)
+            return;
+
         _spriteRenderer.sprite = _releasedSprite;
         _onReleased?.Invoke();
     }
