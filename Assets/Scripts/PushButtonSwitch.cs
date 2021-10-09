@@ -7,7 +7,7 @@ public class PushButtonSwitch : MonoBehaviour {
     [SerializeField] UnityEvent _onPressed;
     [SerializeField] UnityEvent _onReleased;
     [SerializeField] int _playerNumber = 1;
-
+        
     Sprite _releasedSprite;
     SpriteRenderer _spriteRenderer;
     
