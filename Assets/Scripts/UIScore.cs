@@ -14,5 +14,5 @@ public class UIScore : MonoBehaviour {
     private void UpdateScoreText(int score) {
 
         _text.SetText($"Score: {score}");
-    }
+    }    
 }
