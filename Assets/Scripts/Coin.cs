@@ -6,6 +6,13 @@ public class Coin : MonoBehaviour {
     
     public static int CoinsCollected;
 
+    AudioSource _audioSource;
+
+    void Start() {
+
+        _audioSource = GetComponent<AudioSource>();
+    }
+
     void OnTriggerEnter2D(Collider2D collider) {
 
         var player = collider.GetComponent<Player>();
@@ -13,9 +20,19 @@ public class Coin : MonoBehaviour {
         if (player == null)
             return;
 
-        gameObject.SetActive(false);
+        _audioSource.Play();
+
+        GetComponent<Collider2D>().enabled = false;
+        GetComponent<SpriteRenderer>().enabled = false;
         CoinsCollected++;
         ScoreSystem.AddScore(100);
+
+        StartCoroutine(StartDelayBeforeDestroy());             
     }
 
+    IEnumerator StartDelayBeforeDestroy() {
+
+        yield return new WaitForSeconds(2f);
+        Destroy(this.gameObject);
+    }
 }

@@ -22,6 +22,7 @@ public class CoinBox : HittableFromBelow {
 
         Coin.CoinsCollected++;
         _remainingCoins--;
+        GetComponent<AudioSource>().Play();
     }
 }
 
