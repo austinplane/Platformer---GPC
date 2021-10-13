@@ -31,6 +31,7 @@ public class Player : MonoBehaviour {
     private string _jumpButton;
     private string _horizontalAxis;
     int _defaultLayerMask;
+    AudioSource _audioSource;
 
     private void Start() {
 
@@ -44,6 +45,8 @@ public class Player : MonoBehaviour {
         _jumpButton = $"P{_playerNumber}Jump";
         _horizontalAxis = $"P{_playerNumber}Horizontal";
         _defaultLayerMask = LayerMask.GetMask("Default");
+
+        _audioSource = GetComponent<AudioSource>();
 }
 
 
@@ -106,6 +109,7 @@ public class Player : MonoBehaviour {
     }
 
     void Jump() {
+        _audioSource.Play();
         _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _jumpVelocity);
         _jumpsRemaining--;
         _fallTimer = 0;

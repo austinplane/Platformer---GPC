@@ -13,6 +13,7 @@ public class Mushroom : MonoBehaviour {
             if (rigidbody2D != null) {
                 
                 rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, _bounceVelocity);
+                player.GetComponent<AudioSource>().Play();
             }
         }
     }
