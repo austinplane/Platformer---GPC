@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,12 @@ public class Coin : MonoBehaviour {
     void Start() {
 
         _audioSource = GetComponent<AudioSource>();
+        
+    }
+
+    private void ResetCoinCount() {
+
+        CoinsCollected = 0;
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
@@ -34,5 +41,10 @@ public class Coin : MonoBehaviour {
 
         yield return new WaitForSeconds(2f);
         Destroy(this.gameObject);
+    }
+
+    private void OnDestroy() {
+
+        
     }
 }

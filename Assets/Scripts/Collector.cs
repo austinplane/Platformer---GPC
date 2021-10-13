@@ -45,6 +45,7 @@ public class Collector : MonoBehaviour {
 
     public void ItemPickedUp() {
 
+        Debug.Log("Picked up gem.");
         _countCollected++;
         int countRemaining = _collectiblesToCollect.Count - _countCollected;
 

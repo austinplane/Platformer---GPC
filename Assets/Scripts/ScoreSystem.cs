@@ -5,10 +5,22 @@ using UnityEngine;
 
 public static class ScoreSystem {
 
+    public static int Score { get => _score; }
     static int _score;
     
     public static event Action<int> OnHighScoreChanged;
     public static event Action<int> OnScoreChanged;
+
+    static ScoreSystem() {
+
+        Player.OnPlayerDeath += ResetScore;
+    }
+
+    private static void ResetScore() {
+
+        _score = 0;
+        OnScoreChanged?.Invoke(_score);
+    }
 
     public static void AddScore(int points) {
 

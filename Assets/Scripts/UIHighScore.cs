@@ -16,4 +16,9 @@ public class UIHighScore : MonoBehaviour {
 
         _text.SetText($"High Score: {score}");
     }
+
+    private void OnDestroy() {
+
+        ScoreSystem.OnHighScoreChanged -= UpdateScoreText;
+    }
 }

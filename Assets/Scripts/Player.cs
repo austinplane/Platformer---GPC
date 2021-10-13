@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
 
@@ -32,6 +34,8 @@ public class Player : MonoBehaviour {
     private string _horizontalAxis;
     int _defaultLayerMask;
     AudioSource _audioSource;
+
+    public static event Action OnPlayerDeath;
 
     private void Start() {
 
@@ -109,7 +113,9 @@ public class Player : MonoBehaviour {
     }
 
     void Jump() {
-        _audioSource.Play();
+        if (_audioSource != null)
+            _audioSource.Play();
+
         _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _jumpVelocity);
         _jumpsRemaining--;
         _fallTimer = 0;
@@ -166,7 +172,10 @@ public class Player : MonoBehaviour {
 
     internal void ResetToStart() {
 
-        _rigidbody2D.position = _startPosition;
+        OnPlayerDeath?.Invoke();
+        Coin.CoinsCollected = 0;
+        SceneManager.LoadScene("Main Menu");
+        //_rigidbody2D.position = _startPosition;
     }
 
     internal void TeleportTo(Vector3 position) {
