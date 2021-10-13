@@ -16243,6 +16243,7 @@ GameObject:
   - component: {fileID: 185171747}
   - component: {fileID: 185171743}
   - component: {fileID: 185171748}
+  - component: {fileID: 185171749}
   m_Layer: 6
   m_Name: Player1
   m_TagString: Untagged
@@ -16488,6 +16489,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &185171749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185171741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd492d1012a4434c89c108f626abf1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fireballPrefab: {fileID: 6504223740598444923, guid: d284d41ffd26cdc4a8d198956a5657c9, type: 3}
 --- !u!1 &192992858
 GameObject:
   m_ObjectHideFlags: 0
@@ -23143,7 +23157,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8.905078
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -23167,7 +23181,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 1e-45, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5550003, y: -4.94, z: -12}
+  m_LocalPosition: {x: -1.5550003, y: -4.94, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -27348,7 +27362,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1442752706}
   m_LocalRotation: {x: 1e-45, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5550003, y: -4.94, z: -12}
+  m_LocalPosition: {x: -1.5550003, y: -4.94, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2102235791}
