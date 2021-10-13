@@ -34,7 +34,11 @@ public class Door : MonoBehaviour {
     [ContextMenu("Open Door")]
     void Open() {
 
-        _doorOpen = true;        
+        _doorOpen = true;
+        var _audioSource = GetComponent<AudioSource>();
+        if (_audioSource != null)
+            _audioSource.Play();
+
         _rendererMid.sprite = _doorOpenMid;
         _rendererTop.sprite = _doorOpenTop;
 

@@ -14,6 +14,7 @@ public class Key : MonoBehaviour {
 
             transform.SetParent(player.transform);
             transform.localPosition = Vector3.up;
+            GetComponent<AudioSource>().Play();
         }
 
         var keylock = collider.GetComponent<KeyLock>();
