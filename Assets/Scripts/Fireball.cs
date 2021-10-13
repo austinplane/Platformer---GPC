@@ -17,6 +17,7 @@ public class Fireball : MonoBehaviour {
     void Start() {
 
         _rigidbody.velocity = Vector2.right * _fireballSpeed;
+        Destroy(this.gameObject, 2f);
     }
 
     
