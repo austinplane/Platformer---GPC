@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,8 +14,14 @@ public class Player : MonoBehaviour {
     [SerializeField] int _maxJumps = 2;
     [SerializeField] float _downPull = 5;
     [SerializeField] float maxJumpDuration = 0.3f;
+
+    [SerializeField] float _slideVelocity;
+
+
     [Header("Collision")]
     [SerializeField] Transform _feet;
+    [SerializeField] Transform _leftSensor;
+    [SerializeField] Transform _rightSensor;
 
     float _fallTimer;
     Vector2 _startPosition;
@@ -69,6 +76,16 @@ public class Player : MonoBehaviour {
         UpdateAnimator();
         UpdateSpriteDirection();
 
+        if (ShouldSlide()) {
+
+            _jumpsRemaining = _maxJumps;
+            Slide();
+            
+            if (ShouldStartJump())
+                WallJump();
+            return;
+        }
+
         if (ShouldStartJump()) {
             Jump();
         }
@@ -86,6 +103,42 @@ public class Player : MonoBehaviour {
         else {
             IncreasePlayerFallSpeed();
         }
+    }
+
+    private void WallJump() {
+
+        _rigidbody2D.velocity = new Vector2(-_horizontal * _jumpVelocity, _jumpVelocity * 2);
+        _jumpsRemaining--;
+    }
+
+    private void Slide() {
+
+        _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, -_slideVelocity);
+    }
+
+
+    bool ShouldSlide() {
+
+        if (_isGrounded)
+            return false;
+
+        if (_horizontal < 0) {
+
+            var hit = Physics2D.OverlapCircle(_leftSensor.position, 0.1f);
+            
+            if (hit != null && hit.CompareTag("Wall"))
+                return true;            
+        }
+
+        else if (_horizontal > 0) {
+
+            var hit = Physics2D.OverlapCircle(_rightSensor.position, 0.1f);
+
+            if (hit != null && hit.CompareTag("Wall"))
+                return true;
+        }
+
+        return false;
     }
 
     void IncreasePlayerFallSpeed() {
@@ -152,6 +205,7 @@ public class Player : MonoBehaviour {
         bool walking = _horizontal != 0;
         _animator.SetBool("Walk", walking);
         _animator.SetBool("Jump", ShouldContinueJump());
+        _animator.SetBool("Slide", ShouldSlide());
     }
 
     void UpdateIsGrounded() {

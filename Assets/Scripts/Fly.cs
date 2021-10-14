@@ -1,11 +1,12 @@
 using UnityEngine;
 
-public class Fly : MonoBehaviour {
+public class Fly : MonoBehaviour, ITakeHit {
     
     Vector2 _startPosition;
     [SerializeField] Vector2 _direction = Vector2.up;
     [SerializeField] float _speed = 1;
     [SerializeField] float _maxDistance = 2;
+
 
     void Awake() {
 	
@@ -28,5 +29,9 @@ public class Fly : MonoBehaviour {
             transform.position = _startPosition + (_direction.normalized * _maxDistance);
             _direction *= -1;
         }
+    }
+    public void HitFromFireball() {
+
+        Destroy(this.gameObject);
     }
 }

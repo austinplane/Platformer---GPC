@@ -23,7 +23,22 @@ public class Fireball : MonoBehaviour {
 
 
     void OnCollisionEnter2D(Collision2D collision) {
+        CheckForFireballDamage(collision.collider);
 
         _rigidbody.velocity = new Vector2(_fireballSpeed * Direction, _rigidbody.velocity.y);
+    }
+
+    void OnTriggerEnter2D(Collider2D collider) {
+
+        CheckForFireballDamage(collider);
+    }
+
+    void CheckForFireballDamage(Collider2D collider) {
+        var hittable = collider.GetComponent<ITakeHit>();
+        if (hittable != null) {
+            hittable.HitFromFireball();
+            Destroy(this.gameObject);
+        }
+
     }
 }

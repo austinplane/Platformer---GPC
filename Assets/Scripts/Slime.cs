@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Slime : MonoBehaviour {
+public class Slime : MonoBehaviour, ITakeHit {
 
     [SerializeField] Transform _rightSensor;
     [SerializeField] Transform _leftSensor;
@@ -92,5 +92,10 @@ public class Slime : MonoBehaviour {
             alpha -= Time.deltaTime;
             _spriteRenderer.color = new Color(1, 1, 1, alpha);
         }
+    }
+
+    public void HitFromFireball() {
+
+        Destroy(this.gameObject);
     }
 }

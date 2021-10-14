@@ -34,7 +34,6 @@ public class FireballLauncher : MonoBehaviour {
 
         if (Input.GetAxis(_fireButton) > 0.5 && _canFire) {
 
-            var horizontal = Input.GetAxis(_horizontalAxis);
             Fireball fireball = Instantiate(_fireballPrefab, transform.position, Quaternion.identity);
             fireball.Direction = _spriteRenderer.flipX ? -1f : 1f;
             _canFire = false;
