@@ -18,7 +18,6 @@ public class ItemBox : HittableFromBelow {
 
     protected override void Use() {
         
-        base.Use();
         _itemUsed = true;
         _item?.SetActive(true);
 

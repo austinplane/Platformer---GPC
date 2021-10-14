@@ -18,8 +18,6 @@ public class CoinBox : HittableFromBelow {
 
     protected override void Use() {
 
-        base.Use();
-
         Coin.CoinsCollected++;
         _remainingCoins--;
         GetComponent<AudioSource>().Play();

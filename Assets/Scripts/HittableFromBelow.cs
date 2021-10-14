@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class HittableFromBelow : MonoBehaviour {
+public abstract class HittableFromBelow : MonoBehaviour {
 
     [SerializeField] protected Sprite _usedSprite;
     
@@ -39,9 +39,6 @@ public class HittableFromBelow : MonoBehaviour {
             _animator.SetTrigger("Use");
     }
 
-    protected virtual void Use() {
-
-        Debug.Log($"Used {gameObject.name}");
-    }
+    protected abstract void Use();
 
 }
